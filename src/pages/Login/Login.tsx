@@ -12,7 +12,9 @@ export function Login() {
     const navigate = useNavigate();
 
     if (login === adminLogin && password === adminPassword) {
-      navigate("/admin-panel", { replace: true });
+      setTimeout(() => {
+        navigate("/admin-panel", { replace: true });
+      }, 1000);
       return;
     }
 
