@@ -3,8 +3,8 @@ import interiorDesign from "../../assets/interior-design.png";
 
 export function AdminPanel() {
   return (
-    <div className="w-full flex gap-11 items-center">
-      <div className="flex flex-col items-center gap-20">
+    <div className="w-full h-full flex gap-11 items-center justify-center mt-20 flex-wrap">
+      <div className="flex flex-col items-center gap-20 flex-[1_1_500px]">
         <div className="text-blue-400 text-6xl font-mono subpixel-antialiased font-black underline text-center">
           Admin Panel
         </div>
@@ -23,7 +23,7 @@ export function AdminPanel() {
           </button>
         </Link>
       </div>
-      <img src={interiorDesign} alt="Decoration" />
+      <img src={interiorDesign} alt="Decoration" className="flex-[1_1_400px] w-full" />
     </div>
   );
 }
