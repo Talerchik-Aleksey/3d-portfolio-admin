@@ -20,7 +20,7 @@ export function Dashboard() {
     await fetch(`${backendUrl}/${id}`, {
       method: "DELETE",
     });
-    setWorks(works.filter((work: any) => work.id !== id));
+    setWorks(works.filter((work) => work.id !== id));
   }
 
   return (
@@ -42,7 +42,7 @@ export function Dashboard() {
             </div>
           </div>
         ) : (
-          works.map((work: any) => (
+          works.map((work) => (
             <div key={work.id}>
               <h2 className="text-2xl pb-2 font-bold">{work.name}</h2>
               <p className="mb-4">{work.description}</p>

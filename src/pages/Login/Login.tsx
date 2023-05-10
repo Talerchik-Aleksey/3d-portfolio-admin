@@ -10,9 +10,10 @@ export function Login() {
     try {
       const adminLogin = import.meta.env.VITE_ADMIN_LOGIN;
       const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD;
+      const navigate = useNavigate();
 
       if (login === adminLogin && password === adminPassword) {
-        window.location.href = "/admin-panel";
+        navigate("/admin-panel");
       } else {
         setLogin("");
         setPassword("");
