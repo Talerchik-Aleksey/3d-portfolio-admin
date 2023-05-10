@@ -5,7 +5,6 @@ export function Login() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
-  const history = useNavigate();
 
   async function handleLogin() {
     try {
@@ -13,7 +12,7 @@ export function Login() {
       const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD;
 
       if (login === adminLogin && password === adminPassword) {
-        history("/admin-panel");
+        window.location.href = "/admin-panel";
       } else {
         setLogin("");
         setPassword("");
