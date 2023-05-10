@@ -1,16 +1,16 @@
-import { useReducer, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   async function handleLogin() {
     try {
       const adminLogin = import.meta.env.VITE_ADMIN_LOGIN;
       const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD;
-      const navigate = useNavigate();
 
       if (login === adminLogin && password === adminPassword) {
         navigate("/admin-panel");
