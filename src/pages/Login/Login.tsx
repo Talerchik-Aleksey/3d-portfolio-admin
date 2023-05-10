@@ -1,5 +1,5 @@
 import { useReducer, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Login() {
   const [login, setLogin] = useState("");
@@ -9,9 +9,11 @@ export function Login() {
   async function handleLogin() {
     const adminLogin = import.meta.env.VITE_ADMIN_LOGIN;
     const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD;
+    const navigate = useNavigate();
 
     if (login === adminLogin && password === adminPassword) {
-      window.location.href = "/admin-panel";
+      navigate("/admin-panel", { replace: true });
+      return;
     }
 
     setLogin("");
