@@ -5,22 +5,23 @@ export function Login() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
+  const history = useNavigate();
 
   async function handleLogin() {
-    const adminLogin = import.meta.env.VITE_ADMIN_LOGIN;
-    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD;
-    const navigate = useNavigate();
+    try {
+      const adminLogin = import.meta.env.VITE_ADMIN_LOGIN;
+      const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD;
 
-    if (login === adminLogin && password === adminPassword) {
-      setTimeout(() => {
-        navigate("/admin-panel", { replace: true });
-      }, 1000);
-      return;
+      if (login === adminLogin && password === adminPassword) {
+        history("/admin-panel");
+      } else {
+        setLogin("");
+        setPassword("");
+        setIsError(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    setLogin("");
-    setPassword("");
-    setIsError(true);
   }
 
   return (
@@ -51,14 +52,12 @@ export function Login() {
       </div>
       <div className="flex flex-col items-center gap-2">
         {isError && <p className="text-red-500">Incorrect login or password</p>}
-        <Link to="/login">
-          <button
-            className="shadow-lg shadow-indigo-500/40 bg-indigo-500 text-slate-300 px-8 py-2 rounded"
-            onClick={handleLogin}
-          >
-            Login
-          </button>
-        </Link>
+        <button
+          className="shadow-lg shadow-indigo-500/40 bg-indigo-500 text-slate-300 px-8 py-2 rounded"
+          onClick={handleLogin}
+        >
+          Login
+        </button>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route element={<AdminPanel />} path={"/"} />
         <Route element={<Login />} path={"/login"} />
-        <Route element={<Dashboard />} path={"admin-panel"} />
+        <Route element={<Dashboard />} path={"/admin-panel"} />
       </Routes>
     </div>
   );
