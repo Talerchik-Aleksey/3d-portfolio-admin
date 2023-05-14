@@ -76,7 +76,7 @@ export function Dashboard() {
           ))
         )}
 
-        <div className="rounded-lg border-2 border-slate-700 p-4 flex flex-col gap-4 w-max max-w-sm items-center justify-center w-[400px]">
+        <div className="rounded-lg border-2 border-slate-700 p-4 flex flex-col gap-4 w-max max-w-sm items-center justify-center w-full">
           <h2 className="text-2xl pb-2 font-bold">Add Work</h2>
           <Link to="/add">
             <button className="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
