@@ -42,7 +42,7 @@ export function EditWorkForm() {
     setName("");
     setDescription("");
     setImage("");
-    navigate("/admin-panel");
+    navigate("/login");
   }
 
   return (

@@ -20,7 +20,6 @@ export function AddWorkForm() {
     reader.readAsText(file);
   }
 
-
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const updatedWork = { name, description, image: imageUrl, object: fileContent };
@@ -34,7 +33,7 @@ export function AddWorkForm() {
     setDescription("");
     setImage("");
     setObject("");
-    navigate("/admin-panel");
+    navigate("/login");
   }
 
   return (
