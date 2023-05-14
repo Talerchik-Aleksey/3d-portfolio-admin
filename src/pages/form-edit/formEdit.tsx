@@ -56,6 +56,7 @@ export function EditWorkForm() {
           name="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
+          maxLength={100}
           className="border w-full text-white-900 rounded-full py-2 px-4 mr-2 bg-neutral-700 border-neutral-600 hover:bg-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
         />
       </div>
@@ -68,6 +69,7 @@ export function EditWorkForm() {
           name="description"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
+          maxLength={1000}
           className="border w-full text-white-900 rounded py-2 px-4 mr-2 bg-neutral-700 border-neutral-600 hover:bg-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
         />
       </div>
