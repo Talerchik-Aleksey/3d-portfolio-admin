@@ -3,6 +3,7 @@ import "./App.css";
 import { Header } from "./components";
 import { AdminPanel } from "./pages/admin-panel/AdminPanel";
 import { Dashboard } from "./pages/dashboard/Dashboard";
+import { AddWorkForm } from "./pages/form-add/addForm";
 import { EditWorkForm } from "./pages/form-edit/formEdit";
 import { Login } from "./pages/Login/Login";
 
@@ -15,6 +16,7 @@ function App() {
         <Route element={<Login />} path={"/login"} />
         <Route element={<Dashboard />} path={"/admin-panel"} />
         <Route element={<EditWorkForm />} path={"/edit/:id"} />
+        <Route element={<AddWorkForm />} path={"/add"} />
       </Routes>
     </div>
   );

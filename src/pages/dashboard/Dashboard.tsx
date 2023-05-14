@@ -35,7 +35,7 @@ export function Dashboard() {
   return (
     <div className="w-5/6 mx-auto">
       <h1 className="text-3xl font-bold text-slate-200 mt-10">Dashboard</h1>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-4 mt-10">
+      <div className=" grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-4 mt-10">
         {loading ? (
           <div className="animate-pulse flex space-x-4">
             <div className="rounded-full bg-slate-700 h-10 w-10"></div>
@@ -75,6 +75,13 @@ export function Dashboard() {
             </div>
           ))
         )}
+
+        <div className="rounded-lg border-2 border-slate-700 p-4 flex flex-col gap-4 w-max max-w-sm items-center justify-center w-[400px]">
+          <h2 className="text-2xl pb-2 font-bold">Add Work</h2>
+          <Link to="/add">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded">Add</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

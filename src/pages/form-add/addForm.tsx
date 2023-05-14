@@ -1,47 +1,39 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
-type Work = {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-};
-
-export function EditWorkForm() {
-  const { id } = useParams();
-  const [selectedWork, setSelectedWork] = useState<Work | null>(null);
+export function AddWorkForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  const [imageUrl, setImage] = useState("");
+  const [object, setObject] = useState("");
+  const [fileContent, setFileContent] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-    fetch(`${BACKEND_URL}/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setSelectedWork(data);
-        setName(data.name);
-        setDescription(data.description);
-        setImage(data.image);
-      });
-  }, [id]);
+  function handleFileSelect(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+      setFileContent(event?.target?.result as string);
+    };
+
+    reader.readAsText(file);
+  }
+
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const updatedWork = { ...selectedWork!, name, description, image };
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/${id}`, {
-      method: "PUT",
+    const updatedWork = { name, description, image: imageUrl, object: fileContent };
+
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/new`, {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedWork),
     });
-    setSelectedWork(updatedWork);
     setName("");
     setDescription("");
     setImage("");
+    setObject("");
     navigate("/admin-panel");
   }
 
@@ -83,8 +75,21 @@ export function EditWorkForm() {
           type="text"
           id="image"
           name="image"
-          value={image}
+          value={imageUrl}
           onChange={(event) => setImage(event.target.value)}
+          className="border w-full text-white-900 rounded-full py-2 px-4 mr-2 bg-neutral-700 border-neutral-600 hover:bg-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="object" className="block font-medium mb-1">
+          Model
+        </label>
+        <input
+          type="file"
+          id="object"
+          name="object"
+          value={object}
+          onChange={handleFileSelect}
           className="border w-full text-white-900 rounded-full py-2 px-4 mr-2 bg-neutral-700 border-neutral-600 hover:bg-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
         />
       </div>
