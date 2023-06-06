@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -20,20 +21,22 @@ export function AddWorkForm() {
     reader.readAsText(file);
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const updatedWork = { name, description, image: imageUrl, object: fileContent };
 
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/new`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedWork),
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/new`, {
+      name,
+      description,
+      image: imageUrl,
+      object: fileContent,
     });
     setName("");
     setDescription("");
     setImage("");
     setObject("");
-    navigate("/login");
+    if (response.status === 200) {
+      navigate("/admin-panel");
+    }
   }
 
   return (
@@ -93,7 +96,7 @@ export function AddWorkForm() {
         />
       </div>
       <div className="flex justify-end">
-        <Link to="/" className="flex items-center text-sm">
+        <Link to="/admin-panel" className="flex items-center text-sm">
           <button type="button" className="text-gray-500 font-medium mr-4">
             Cancel
           </button>

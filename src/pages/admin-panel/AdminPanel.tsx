@@ -23,7 +23,13 @@ export function AdminPanel() {
           </button>
         </Link>
       </div>
-      <img src={interiorDesign} alt="Decoration" className="flex-[1_1_400px] w-full" />
+      <img
+        src={interiorDesign}
+        alt="Decoration"
+        width={900}
+        height={900}
+        className="flex-[1_1_400px] w-full"
+      />
     </div>
   );
 }

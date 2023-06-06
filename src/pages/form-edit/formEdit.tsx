@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -30,19 +31,17 @@ export function EditWorkForm() {
       });
   }, [id]);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const updatedWork = { ...selectedWork!, name, description, image };
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedWork),
-    });
+    const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/${id}`, updatedWork);
     setSelectedWork(updatedWork);
     setName("");
     setDescription("");
     setImage("");
-    navigate("/login");
+    if (response.status === 200) {
+      navigate("/admin-panel");
+    }
   }
 
   return (
@@ -89,7 +88,7 @@ export function EditWorkForm() {
         />
       </div>
       <div className="flex justify-end">
-        <Link to="/" className="flex items-center text-sm">
+        <Link to="/admin-panel" className="flex items-center text-sm">
           <button type="button" className="text-gray-500 font-medium mr-4">
             Cancel
           </button>
