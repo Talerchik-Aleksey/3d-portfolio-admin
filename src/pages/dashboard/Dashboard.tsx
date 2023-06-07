@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -22,13 +23,12 @@ export function Dashboard() {
         setLoading(false);
       })
       .catch((error) => console.error(error));
+    setLoading(false);
   }, []);
 
   async function deleteHandler(id: number) {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    await fetch(`${backendUrl}/${id}`, {
-      method: "DELETE",
-    });
+    const response = await axios.delete(`${backendUrl}/${id}`);
     setWorks((prevWorks) => prevWorks.filter((work) => work.id !== id));
   }
 
@@ -58,7 +58,7 @@ export function Dashboard() {
             >
               <div>
                 <h2 className="text-2xl pb-2 font-bold">{work.name}</h2>
-                <p className="mb-4">{work.description}</p>
+                <p className="mb-4 break-all">{work.description}</p>
                 <img src={work.image} alt={work.name} className=" w-full rounded" />
               </div>
               <div>

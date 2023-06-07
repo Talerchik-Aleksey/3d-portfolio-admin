@@ -8,6 +8,7 @@ export function AddWorkForm() {
   const [imageUrl, setImage] = useState("");
   const [object, setObject] = useState("");
   const [fileContent, setFileContent] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   function handleFileSelect(event: any) {
@@ -15,6 +16,11 @@ export function AddWorkForm() {
     const reader = new FileReader();
 
     reader.onload = function (event) {
+      const maxAllowedSize = 10 * 1024 * 1024;
+      if (file.size > maxAllowedSize) {
+        alert("File is too big!");
+        return;
+      }
       setFileContent(event?.target?.result as string);
     };
 
@@ -23,6 +29,7 @@ export function AddWorkForm() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setLoading(true);
 
     const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/new`, {
       name,
@@ -34,6 +41,7 @@ export function AddWorkForm() {
     setDescription("");
     setImage("");
     setObject("");
+    setLoading(false);
     if (response.status === 200) {
       navigate("/admin-panel");
     }
@@ -100,7 +108,7 @@ export function AddWorkForm() {
           className="border w-full text-white-900 rounded-full py-2 px-4 mr-2 bg-neutral-700 border-neutral-600 hover:bg-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
         />
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-6 items-center align-center">
         <Link to="/admin-panel" className="flex items-center text-sm">
           <button type="button" className="text-gray-500 font-medium mr-4">
             Cancel
@@ -109,6 +117,7 @@ export function AddWorkForm() {
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
           Save
         </button>
+        {loading && <img src="./download.png" alt="loading" className="animate-bounce w-6 h-6" />}
       </div>
     </form>
   );
