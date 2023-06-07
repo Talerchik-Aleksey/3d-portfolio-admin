@@ -30,6 +30,10 @@ export function AddWorkForm() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
+    if (!fileContent) {
+      alert("Please select a file!");
+      return;
+    }
 
     const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/new`, {
       name,
