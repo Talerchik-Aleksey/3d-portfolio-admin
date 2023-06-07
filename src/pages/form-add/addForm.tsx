@@ -41,7 +41,7 @@ export function AddWorkForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto">
-      <h2 className="text-xl font-bold mb-4">Edit Work</h2>
+      <h2 className="text-xl font-bold mb-4">Add Work</h2>
       <div className="mb-4">
         <label htmlFor="name" className="block font-medium mb-1">
           Name
@@ -53,6 +53,7 @@ export function AddWorkForm() {
           value={name}
           onChange={(event) => setName(event.target.value)}
           maxLength={100}
+          required
           className="border w-full text-white-900 rounded-full py-2 px-4 mr-2 bg-neutral-700 border-neutral-600 hover:bg-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
         />
       </div>
@@ -66,6 +67,7 @@ export function AddWorkForm() {
           value={description}
           onChange={(event) => setDescription(event.target.value)}
           maxLength={1000}
+          required
           className="border w-full text-white-900 rounded py-2 px-4 mr-2 bg-neutral-700 border-neutral-600 hover:bg-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
         />
       </div>
@@ -79,6 +81,7 @@ export function AddWorkForm() {
           name="image"
           value={imageUrl}
           onChange={(event) => setImage(event.target.value)}
+          required
           className="border w-full text-white-900 rounded-full py-2 px-4 mr-2 bg-neutral-700 border-neutral-600 hover:bg-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
         />
       </div>
@@ -90,8 +93,10 @@ export function AddWorkForm() {
           type="file"
           id="object"
           name="object"
-          value={object}
+          // value={object}
           onChange={handleFileSelect}
+          accept=".gltf"
+          required
           className="border w-full text-white-900 rounded-full py-2 px-4 mr-2 bg-neutral-700 border-neutral-600 hover:bg-neutral-600 focus:outline-none focus:ring-2 focus:ring-neutral-600"
         />
       </div>
