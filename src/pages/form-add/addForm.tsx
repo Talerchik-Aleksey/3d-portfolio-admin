@@ -17,10 +17,10 @@ export function AddWorkForm() {
 
     reader.onload = function (event) {
       const maxAllowedSize = 10 * 1024 * 1024;
-      if (file.size > maxAllowedSize) {
-        alert("File is too big!");
-        return;
-      }
+      // if (file.size > maxAllowedSize) {
+      //   alert("File is too big!");
+      //   return;
+      // }
       setFileContent(event?.target?.result as string);
     };
 
