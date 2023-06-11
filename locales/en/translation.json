@@ -1,0 +1,59 @@
+{
+  "header": {
+    "home": "Home",
+    "works": "Works",
+    "about": "About"
+  },
+  "home": {
+    "greeting": "Hi, I'm Alexey.",
+    "description": "I am a 3D interior designer, at the moment I have more than 100 works",
+    "buttons": {
+      "works": "VIEW MY WORKS",
+      "about": "ABOUT ME"
+    }
+  },
+  "aboutMe": {
+    "name": "Alexey Leonov | 3D Designer",
+    "description": "Hi there! My name is Alexey, and I am a 3D designer based in Grodno. I have 3 years of experience in the field and specialize in 3D modeling. I love working with clients to bring their ideas to life, and I am always looking for new projects to take on.",
+    "stats": {
+      "locationHeading": "Location",
+      "location": "Grodno, Belarus",
+      "experienceHeading": "Experience",
+      "experience": "3 years"
+    }
+  },
+  "works": {
+    "title": "Gallery",
+    "search": "Search",
+    "searchPlaceholder": "Small Kitchen"
+  },
+  "work": {
+    "view": "View"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "signIn": "Sign in",
+    "signUp": "Sign up"
+  },
+  "adminPanel": {
+    "title": "Admin panel",
+    "description": "The start page of an admin panel for a website serves as the central hub for managing thewebsite's content and settings. It provides an overview of the website's status andperformance, as well as quick access to the most commonly used tools and features. Thestart page typically includes widgets or modules that display key metrics such as sitetraffic, user engagement, and sales data, allowing the site administrator to quicklyassess the site's performance.",
+    "login": "Login",
+    "password": "Password",
+    "signIn": "Sign in",
+    "error": "Incorrect login or password",
+    "dashboard": "Dashboard",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "addWork": "Add work",
+    "noFile": "Please select a file!",
+    "name": "Name",
+    "descriptionLabel": "Description",
+    "image": "Image",
+    "object": "Model",
+    "cancel": "Cancel"
+  }
+}

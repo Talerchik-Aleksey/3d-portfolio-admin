@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
 export function AddWorkForm() {
@@ -9,6 +10,7 @@ export function AddWorkForm() {
   const [object, setObject] = useState("");
   const [fileContent, setFileContent] = useState("");
   const [loading, setLoading] = useState(false);
+  const [t, i18n] = useTranslation();
   const navigate = useNavigate();
 
   function handleFileSelect(event: any) {
@@ -16,11 +18,6 @@ export function AddWorkForm() {
     const reader = new FileReader();
 
     reader.onload = function (event) {
-      const maxAllowedSize = 10 * 1024 * 1024;
-      // if (file.size > maxAllowedSize) {
-      //   alert("File is too big!");
-      //   return;
-      // }
       setFileContent(event?.target?.result as string);
     };
 
@@ -31,7 +28,7 @@ export function AddWorkForm() {
     event.preventDefault();
     setLoading(true);
     if (!fileContent) {
-      alert("Please select a file!");
+      alert(t("adminPanel.noFile"));
       return;
     }
 
@@ -53,10 +50,10 @@ export function AddWorkForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto">
-      <h2 className="text-xl font-bold mb-4">Add Work</h2>
+      <h2 className="text-xl font-bold mb-4">{t("adminPanel.addWork")}</h2>
       <div className="mb-4">
         <label htmlFor="name" className="block font-medium mb-1">
-          Name
+          {t("adminPanel.name")}
         </label>
         <input
           type="text"
@@ -71,7 +68,7 @@ export function AddWorkForm() {
       </div>
       <div className="mb-4">
         <label htmlFor="description" className="block font-medium mb-1">
-          Description
+          {t("adminPanel.descriptionLabel")}
         </label>
         <textarea
           id="description"
@@ -85,7 +82,7 @@ export function AddWorkForm() {
       </div>
       <div className="mb-4">
         <label htmlFor="image" className="block font-medium mb-1">
-          Image
+          {t("adminPanel.image")}
         </label>
         <input
           type="text"
@@ -99,13 +96,12 @@ export function AddWorkForm() {
       </div>
       <div className="mb-4">
         <label htmlFor="object" className="block font-medium mb-1">
-          Model
+          {t("adminPanel.object")}
         </label>
         <input
           type="file"
           id="object"
           name="object"
-          // value={object}
           onChange={handleFileSelect}
           accept=".gltf"
           required
@@ -115,11 +111,11 @@ export function AddWorkForm() {
       <div className="flex justify-end gap-6 items-center align-center">
         <Link to="/admin-panel" className="flex items-center text-sm">
           <button type="button" className="text-gray-500 font-medium mr-4">
-            Cancel
+            {t("adminPanel.cancel")}
           </button>
         </Link>
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          Save
+          {t("adminPanel.add")}
         </button>
         {loading && <img src="./download.png" alt="loading" className="animate-bounce w-6 h-6" />}
       </div>
