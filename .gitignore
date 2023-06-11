@@ -122,3 +122,5 @@ web_modules/
 
 # Local Netlify folder
 .netlify
+
+pnpm-lock.yaml
