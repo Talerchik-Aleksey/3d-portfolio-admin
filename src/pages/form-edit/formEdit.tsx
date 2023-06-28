@@ -24,10 +24,10 @@ export function EditWorkForm() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setSelectedWork(data);
-        setName(data.name);
-        setDescription(data.description);
-        setImage(data.image);
+        setSelectedWork(data.work);
+        setName(data.work.name);
+        setDescription(data.work.description);
+        setImage(data.work.image);
       });
   }, [id]);
 
